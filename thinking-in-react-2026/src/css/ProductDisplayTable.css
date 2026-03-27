@@ -1,0 +1,8 @@
+
+.product-display-table {
+    width: 100%;
+}
+
+.product-display-table > thead {
+    text-align: center;
+}

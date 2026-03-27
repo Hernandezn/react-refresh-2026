@@ -1,0 +1,9 @@
+
+.product-display {
+    background-color: white;
+    color: black;
+    font-size: medium;
+    display: inline-block;
+    padding: 1rem;
+    text-align: left;
+}
