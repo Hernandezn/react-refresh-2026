@@ -28,6 +28,8 @@ export interface ProductDatum {
  */
 export default function ProductDisplay(props: { id: number }) {
     const [displayData, setDisplayData] = useState<Product[]>([]);
+    const [searchText, setSearchText] = useState<string>('');
+    const [showStockedOnly, setShowStockedOnly] = useState<boolean>(false);
 
     // set display data asynchronously
     useEffect(
@@ -42,15 +44,21 @@ export default function ProductDisplay(props: { id: number }) {
         []
     );
 
-
+    // input handlers
+    function handleSearch(searchInput: string) {
+        setSearchText(searchInput);
+    }
+    function handleCheckboxToggle(checkboxState: boolean) {
+        setShowStockedOnly(checkboxState);
+    }
 
     return (
         <div className="product-display">
-            <ProductFilterInput id={props.id} />
+            <ProductFilterInput id={props.id} onSearch={handleSearch} onCheckboxToggle={handleCheckboxToggle} />
 
             <br />
 
-            <ProductDisplayTable products={displayData} />
+            <ProductDisplayTable products={displayData} searchText={searchText} showStockedOnly={showStockedOnly} />
         </div>
     );
 }

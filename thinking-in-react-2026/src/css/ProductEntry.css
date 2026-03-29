@@ -2,7 +2,3 @@
 .out-of-stock > td:first-child {
     color: red;
 }
-
-.hidden {
-    display: none;
-}

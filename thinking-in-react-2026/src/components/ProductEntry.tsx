@@ -3,15 +3,9 @@ import '../css/ProductEntry.css';
 
 import type { ProductDatum } from "./ProductDisplayTable";
 
-export default function ProductEntry(props: { datum: ProductDatum, displayed?: boolean }) {
-    const classNames:string[] = props.datum.stocked ? [] : ['out-of-stock'];
-
-    if (props.displayed === false) {
-        classNames.push('hidden');
-    }
-
+export default function ProductEntry(props: { datum: ProductDatum }) {
     return (
-        <tr className={classNames.join(' ')}>
+        <tr className={props.datum.stocked ? '' : 'out-of-stock'}>
             <td>
                 {props.datum.name}
             </td>
