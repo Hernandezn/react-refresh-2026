@@ -6,5 +6,5 @@ As I don't have any other public React code since my team projects with Revature
 ([Client Engagement Portal](https://github.com/revaturelabs/client-engagement-portal-front) and [Clipper](https://github.com/Hernandezn/ClipperFront)), this will be a public-facing review & code testing area for my reintroduction into React.
 
 Works being referenced:
-- [React Official Documentation]([https://react.dev/learn](https://react.dev/reference/react))
+- [React Official Documentation](https://react.dev/reference)
 - [Next.JS Official Documentation](https://nextjs.org/docs)
