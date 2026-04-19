@@ -9,19 +9,41 @@ import {
 } from './definitions';
 import { formatCurrency } from './utils';
 
-const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
+// casts global to an unknown type,
+// then casts that unknown type to a type that has a .sql field;
+const globalForSql =
+  global as
+  unknown as
+  { sql?: ReturnType<typeof postgres> }
+; // ^ equivalent js would be to just assign global.sql = value, but typescript won't support that
+
+// uses the existing global.sql if it exists; only creates if it doesn't already exist
+const sql =
+  globalForSql.sql ??
+  postgres(process.env.POSTGRES_URL!, { ssl: 'require', /* max connections pool -> */ max: 2 })
+;
+
+// whether it's created here or already existed, global.sql exists now; this completes a singleton pattern
+globalForSql.sql = sql;
+/* 
+
+  this global.sql singleton is reused when this js module reloads, 
+  preventing the app's hot reloads from creating excessive connections
+  that would cause my aws rds to hit its max connections limit
+
+*/
 
 export async function fetchRevenue() {
   try {
     // Artificially delay a response for demo purposes.
     // Don't do this in production :)
 
-    // console.log('Fetching revenue data...');
-    // await new Promise((resolve) => setTimeout(resolve, 3000));
+    console.log('Fetching revenue data...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
 
     const data = await sql<Revenue[]>`SELECT * FROM revenue`;
 
-    // console.log('Data fetch completed after 3 seconds.');
+    console.log('Data fetch completed after 3 seconds.');
 
     return data;
   } catch (error) {
@@ -93,6 +115,9 @@ export async function fetchFilteredInvoices(
   const offset = (currentPage - 1) * ITEMS_PER_PAGE;
 
   try {
+    // ILIKE - case-insensitive "LIKE"
+    // query finds records where any field in that record contains the query string
+    // amount::text = read this number as a text string
     const invoices = await sql<InvoicesTable[]>`
       SELECT
         invoices.id,
@@ -160,6 +185,7 @@ export async function fetchInvoiceById(id: string) {
       amount: invoice.amount / 100,
     }));
 
+    // console.log(invoice);
     return invoice[0];
   } catch (error) {
     console.error('Database Error:', error);
