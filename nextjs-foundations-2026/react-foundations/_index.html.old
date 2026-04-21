@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        
+    </head>
+    <body>
+        <div id="app"></div>
+        <div id="react-app"></div>
+
+        <script type="text/javascript">
+            // DOM manipulation samples
+            const app = document.getElementById('app');
+
+            // imperative programming
+            {
+                const header = document.createElement('h1');
+                header.innerText = 'Header 1';
+                app.appendChild(header);
+
+                const header2 = document.createElement('h2');
+                header2.innerText = 'Header 2';
+                app.appendChild(header2);
+
+                const header3 = document.createElement('h3');
+                header3.innerText = 'Header 3';
+                app.appendChild(header3);
+
+                const header4 = document.createElement('h4');
+                header4.innerText = 'Header 4';
+                app.appendChild(header4);
+
+                const header5 = document.createElement('h5');
+                header5.innerText = 'Header 5';
+                app.appendChild(header5);
+            }
+
+            // more declarative programming / closer to react
+            // additional overhead, but scales better for the developer
+            {
+                function addElement(tagName, textContent) {
+                    const element = document.createElement(tagName);
+                    element.innerText = textContent;
+                    app.appendChild(element);
+                };
+
+                addElement('h1', 'Header A');
+                addElement('h2', 'Header B');
+                addElement('h3', 'Header C');
+                addElement('h4', 'Header D');
+                addElement('h5', 'Header E');
+            }
+        </script>
+
+        <script
+            title="This is React core, for creating components and managing state & props"
+            src="https://unpkg.com/react@18/umd/react.development.js"
+        ></script>
+        <script 
+            title="This is a bridge between React and the browser DOM" 
+            src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+        ></script>
+        <script 
+            title="This is needed to parse (transpile) JSX; runs slowly, use a build tool (like Vite) or at least pre-parse & minify for proper apps" 
+            src="https://unpkg.com/@babel/standalone/babel.min.js"
+        ></script>
+
+        <script type="text/jsx">
+            // has MUCH more overhead, but scales well for the developer AND adds great flexibility without great cognitive load
+            const root = ReactDOM.createRoot(document.getElementById('react-app'));
+
+            // renders 5 JSX headers
+            root.render(
+                <>
+                    <h1>React Header</h1>
+                    <h2>React Header Again</h2>
+                    <h3>React Header Again Again</h3>
+                    <h4>React Header Again Again Again</h4>
+                    <h5>React Header Again Again Again Again</h5>
+                </>
+            );
+
+            const HeaderComponent = () => <h1>Header Component</h1>;
+
+            // root.render(HeaderComponent()); // is equivalent to the below line:
+            root.render(<HeaderComponent />);
+            // when render is re-run, it removes previous renders
+
+            // this mounts an internal HeaderComponent
+            const PageComponent = () => 
+                <div>
+                    <HeaderComponent />
+                    <p>
+                        Page component content
+                    </p>
+                </div>
+            ;
+            root.render(<PageComponent />);
+
+            
+
+            const HeaderComponent2 = (props) => <h1>{props?.message ? props.message : 'No message prop found'}</h1>;
+
+            // the below is equivalent to: root.render(HeaderComponent2({ message: "This message was passed into my component using props!" }));
+            root.render(<HeaderComponent2 message="This message was passed into my component using props!" />);
+
+
+
+            /*
+                IMPLICIT LIMITATION OF { javascript within jsx using curly braces }:
+                
+                The expression within curly braces must evaluate to a SINGLE value.
+                If that value is also used as a child component
+
+
+
+                Single-value examples:
+
+                valid: {props.message}
+                invalid: {props.message;}
+
+                valid: {props.message} {'... Hello!'}
+                invalid: {props.message; '... Hello!'}
+
+                valid: {<><HeaderComponent /><HeaderComponent /></>}
+                invalid: {<HeaderComponent /><HeaderComponent />}
+
+                valid: {1 + 2}
+                invalid: {const x = 1 + 2}
+
+
+
+                More things that evaluate to valid components:
+                {} {`${props.message} ... Hello!`}
+                {
+                    (() => 'Hello!')()
+                    // mind that this function is immediately called and returns a string
+                }
+                {
+                    myBoolean 
+                        ? 
+                        <MyComponent /> 
+                        : 
+                        false
+                }
+                {
+                    [<MyComponent />, '... Hello!']
+                }
+
+
+
+                Objects that are invalid as child components but valid as props:
+             
+                {{}} {{`${props.message} ... Hello!`}} {() => 'Hello!'} 
+            */
+
+
+            // can reference props without dot notation by naming them in the argument's props object
+            const HeaderComponent3 = ({ message }) => <><HeaderComponent2 message={message} /></>;
+            root.render(
+                <div>
+                    <HeaderComponent3 message="This message was passed in as props and passed down again!" />
+                    <HeaderComponent3 message="This is a different message in another copy of the same component." />
+                </div>
+            );
+
+
+
+            // iterative component list creation
+            const PageComponent2 = () => {
+                const names = ['Wicky Woo', 'Lady Savannah', 'Colonel Mustard'];
+
+                const [likes, setLikes] = React.useState(0);
+
+                return(
+                    <div>
+                        <HeaderComponent3 message="Develop. Preview. Ship." />
+                        <ul>
+                            {names.map((name) => (
+                                <li key={name}>
+                                    {name}
+                                </li>
+                            ))}
+                        </ul>
+
+                        <button onClick={
+                            (event) => {
+                                console.log("increment like count");
+                                setLikes(likes + 1);
+                            }
+                        }>
+                            Like ({likes})
+                        </button>
+                    </div>
+                )
+            }
+            root.render(<PageComponent2 />);
+        </script>
+    </body>
+</html>
