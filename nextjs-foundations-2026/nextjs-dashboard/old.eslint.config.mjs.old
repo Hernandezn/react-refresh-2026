@@ -1,0 +1,33 @@
+/*
+    Official documentation said to use this file, but the ESLint setup from 
+    its current default version and the Next.JS project setup from the 
+    documentation are out of sync, compatibility-wise.
+
+    After running the "pnpm add -D eslint eslint-config-next" command in the 
+    project base directory, I had to then run a removal command 
+    ("pnpm remove eslint eslint-config-next") before re-adding the 
+    dependencies with compatible versions 
+    ("pnpm add -D eslint@8 eslint-config-next@14").
+
+    Now, I'm instead letting Next manage ESLint via the legacy/non-flat config 
+    .eslintrc.json.
+*/
+
+import { defineConfig, globalIgnores } from 'eslint/config';
+import nextVitals from 'eslint-config-next/core-web-vitals';
+
+const eslintConfig = defineConfig(
+    [
+        ...nextVitals,
+        globalIgnores(
+            [
+                '.next/**',
+                'out/**',
+                'build/**',
+                'next-env.d.ts'
+            ]
+        )
+    ]
+);
+
+export default eslintConfig;
