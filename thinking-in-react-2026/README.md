@@ -12,4 +12,4 @@ components/types/utilities/etc into a file structure, styles per component, and 
 
 This is part of my re-introduction to React in 2026.
 
-Run this application using `npm run dev` and going to http://localhost:5173/
+Run this application by using `npm run dev` and going to http://localhost:5173/
