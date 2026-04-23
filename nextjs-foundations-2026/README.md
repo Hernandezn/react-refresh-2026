@@ -19,6 +19,14 @@ This is a set of Next.JS learning subprojects using documentation provided by Ve
 
 ---
 
+### /nextjs-blog - [Next.JS App Router Dashboard Application](https://nextjs.org/learn/dashboard-app)
+
+  An introduction to the Pages Router architecture of Next.JS. Most useful for legacy systems, but this includes exercises around baseline server & client rendering strategies, the usage of CSS modules, and page metadata management. The learning documentation includes some mention of additional tools like SCSS/SASS and Vercel's deployment platform, but the lessons are generally well-focused around using Next.JS itself.
+
+  Run this app with `npm run dev`
+
+---
+
 ### /nextjs-dashboard - [Next.JS App Router Dashboard Application](https://nextjs.org/learn/dashboard-app)
 
   A dense, opinionated runthrough of several Next.JS features, including many pieces of tooling & architecture chosen by Vercel. Includes usage of Tailwind CSS, PNPM, ESLint, Next-Auth for authentication, Bcrypt, Suspense & streaming, CLSX, Zod, SQL using Postgres, Next.JS backend using server actions & API routes, route groups & dynamic paths, and more. Also requires interfacing with & updating code written by someone else.
