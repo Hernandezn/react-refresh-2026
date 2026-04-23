@@ -19,9 +19,9 @@ This is a set of Next.JS learning subprojects using documentation provided by Ve
 
 ---
 
-### /nextjs-blog - [Next.JS App Router Dashboard Application](https://nextjs.org/learn/dashboard-app)
+### /nextjs-blog - [Next.JS Pages Router Dashboard Application](https://nextjs.org/learn/pages-router)
 
-  An introduction to the Pages Router architecture of Next.JS. Most useful for legacy systems, but this includes exercises around baseline server & client rendering strategies, the usage of CSS modules, and page metadata management. The learning documentation includes some mention of additional tools like SCSS/SASS and Vercel's deployment platform, but the lessons are generally well-focused around using Next.JS itself.
+  An introduction to using Next.JS with the Pages Router architecture. Most useful for legacy systems, but this includes exercises around baseline server & client rendering strategies, the usage of CSS modules, and page metadata management. The learning documentation includes some mention of additional tools like Vercel's deployment platform, SCSS/SASS, and select purpose-driven npm packages like gray-matter & date-fns, but the lessons remain generally well-focused around using Next.JS itself.
 
   Run this app with `npm run dev`
 
@@ -29,7 +29,7 @@ This is a set of Next.JS learning subprojects using documentation provided by Ve
 
 ### /nextjs-dashboard - [Next.JS App Router Dashboard Application](https://nextjs.org/learn/dashboard-app)
 
-  A dense, opinionated runthrough of several Next.JS features, including many pieces of tooling & architecture chosen by Vercel. Includes usage of Tailwind CSS, PNPM, ESLint, Next-Auth for authentication, Bcrypt, Suspense & streaming, CLSX, Zod, SQL using Postgres, Next.JS backend using server actions & API routes, route groups & dynamic paths, and more. Also requires interfacing with & updating code written by someone else.
+  A dense, opinionated runthrough of several Next.JS features using the App Router architecture. This also includes many pieces of tooling & architecture chosen by Vercel. This means usage of Tailwind CSS, PNPM, ESLint, Next-Auth for authentication, Bcrypt, Suspense & streaming, CLSX, Zod, SQL using Postgres, Next.JS backend using server actions & API routes, route groups & dynamic paths, and more. Also requires interfacing with & updating code written by someone else. Overall, this subproject's learning documentation from Next is less focused than the other subprojects, but this includes working architecture that will probably serve as the best reference for future work.
 
   Run this app with `pnpm dev`
 
