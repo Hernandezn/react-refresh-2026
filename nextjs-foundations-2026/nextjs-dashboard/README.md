@@ -5,8 +5,8 @@ This is the [Next.js App Router](https://nextjs.org/learn/dashboard-app) exercis
 You may view the full exercise overview [here on the Next.js Website](https://nextjs.org/learn).
 
 App login credentials:
-- Email: user@nextmail.com
-- Password: 123456
+- Email: `user@nextmail.com`
+- Password: `123456`
 
 ## Additional Notes
 
