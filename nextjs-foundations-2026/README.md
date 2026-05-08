@@ -19,7 +19,7 @@ This is a set of Next.JS learning subprojects using documentation provided by Ve
 
 ---
 
-### /nextjs-blog - [Next.JS Pages Router Dashboard Application](https://nextjs.org/learn/pages-router)
+### /nextjs-blog - [Next.JS Pages Router Blog Application](https://nextjs.org/learn/pages-router)
 
   An introduction to using Next.JS with the Pages Router architecture. Most useful for legacy systems, but this includes exercises around baseline server & client rendering strategies, the usage of CSS modules, and page metadata management. The learning documentation includes some mention of additional tools like Vercel's deployment platform, SCSS/SASS, and select purpose-driven npm packages like gray-matter & date-fns, but the lessons remain generally well-focused around using Next.JS itself.
 
