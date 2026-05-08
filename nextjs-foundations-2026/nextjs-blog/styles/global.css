@@ -15,11 +15,19 @@ body {
     Droid Sans,
     Helvetica Neue,
     sans-serif;
+  
+  line-height: 1.6;
+  font-size: 18px;
 }
 
 a {
-  color: inherit;
+  /* color: inherit; */
+  color: #0070f3;
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 * {
@@ -28,5 +36,6 @@ a {
 
 img {
   max-width: 100%;
+  display: block;
   height: auto;
 }

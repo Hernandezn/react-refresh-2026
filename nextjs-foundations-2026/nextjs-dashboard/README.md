@@ -4,6 +4,10 @@ This is the [Next.js App Router](https://nextjs.org/learn/dashboard-app) exercis
 
 You may view the full exercise overview [here on the Next.js Website](https://nextjs.org/learn).
 
+App login credentials:
+- Email: user@nextmail.com
+- Password: 123456
+
 ## Additional Notes
 
 As given, this course explains a lot of what can work but not a lot of HOW it works. Additionally, from the 6th module of this exercise set, it attempts to gear my learning toward how to use Vercel's managed ecosystem rather than more generally applicable information.
